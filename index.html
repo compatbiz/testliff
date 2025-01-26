@@ -54,13 +54,14 @@
         const universalLink = await liff.permanentLink.createUrl()
         document.getElementById("universalLink1").append(universalLink)
 
-        const params = new URLSearchParams({
-          param1: "value1",
-          param2: "value2"
-        }).toString();
+        // const params = new URLSearchParams({
+        //   param1: "value1",
+        //   param2: "value2"
+        // }).toString();
 
-        liff.permanentLink.setExtraQueryParam(params);
+        // liff.permanentLink.setExtraQueryParam(params);
         
+        liff.permanentLink.setExtraQueryParam("param1=value1&param2=value2");
 
         const universalLinkWithParams = await liff.permanentLink.createUrl()
 
