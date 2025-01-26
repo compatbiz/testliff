@@ -80,7 +80,7 @@
           alert('ฟังก์ชันนี้ใช้ได้เฉพาะใน LINE เท่านั้น')
           return
         }
-        const result = await liff.scanCodeV2()  
+        const result = await liff.scanCodeV2()
         document.getElementById("scanCode").append(result.value)
       } catch (error) {
         console.error('Error scanning:', error)
@@ -153,7 +153,7 @@
     }
 
     async function main() {
-      await liff.init({ liffId: "2006821424-BxNGqX9L" })
+      await liff.init({ liffId: "2006821424-BxNGqX9L", withLoginOnExternalBrowser: true, subWindowOpen: true })
 
       document.getElementById("isLoggedIn").append(liff.isLoggedIn())
 
