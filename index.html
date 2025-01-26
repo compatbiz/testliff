@@ -127,7 +127,7 @@
     }
 
     async function main() {
-      await liff.init({ liffId: "2006821424-BxNGqX9L" })
+      await liff.init({ liffId: "2006821424-BxNGqX9L", withLoginOnExternalBrowser: true })
 
       if (liff.isLoggedIn()) {
         getEnvironment()
