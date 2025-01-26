@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>My LIFF app</title>
   <link rel="stylesheet" href="css/style.css" media="all">
@@ -75,13 +76,14 @@
     async function scanCode() {
       try {
         if (!liff.isInClient()) {
-          alert('This button is not available in external browser')
+          alert('ฟังก์ชันนี้ใช้ได้เฉพาะใน LINE เท่านั้น')
           return
         }
         const result = await liff.scanCode()
         document.getElementById("scanCode").append(result.value)
       } catch (error) {
         console.error('Error scanning:', error)
+        alert('สแกนไม่สำเร็จ ' + error.message)
       }
     }
 
@@ -151,6 +153,8 @@
 
     async function main() {
       await liff.init({ liffId: "2006821424-BxNGqX9L" })
+
+      document.getElementById("isLoggedIn").append(liff.isLoggedIn())
 
       if (liff.isLoggedIn()) {
         getEnvironment()
