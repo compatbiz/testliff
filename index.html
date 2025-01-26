@@ -57,6 +57,10 @@
     }
 
     function closed() {
+
+      if (liff.getContext().type !== "none" && liff.getContext().type !== "external") {
+        liff.closeWindow()
+      }
     }
 
     async function scanCode() {
