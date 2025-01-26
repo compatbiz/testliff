@@ -54,12 +54,20 @@
         const universalLink = await liff.permanentLink.createUrl()
         document.getElementById("universalLink1").append(universalLink)
 
-        const universalLinkWithParams = await liff.permanentLink.createUrl({
-          query: {
-            param1: "value1",
-            param2: "value2"
-          }
+
+        liff.permanentLink.setExtraQueryParam({
+          param1: "value1",
+          param2: "value2"
         })
+
+        const universalLinkWithParams = await liff.permanentLink.createUrl()
+
+        // const universalLinkWithParams = await liff.permanentLink.createUrl({
+        //   query: {
+        //     param1: "value1",
+        //     param2: "value2"
+        //   }
+        // })
         document.getElementById("universalLink2").append(universalLinkWithParams)
       } catch (error) {
         console.error('Error creating universal link:', error)
