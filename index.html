@@ -48,12 +48,21 @@
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
     function createUniversalLink() {
+      
     }
 
     async function shareMsg() {
+      if (liff.getContext().type !== "none" && liff.getContext().type !== "external") {
+        await liff.shareTargetPicker([{
+          type: "text",
+          text: "Hello, World!"
+        }])
+      }
     }
 
     function logOut() {
+      liff.logout()
+      window.location.reload()
     }
 
     function closed() {
@@ -64,9 +73,15 @@
     }
 
     async function scanCode() {
+      const result = await liff.scanCode()
+      document.getElementById("scanCode").append(result.value)
     }
 
     function openWindow() {
+      liff.openWindow({
+        url: "https://line.me",
+        external: true
+      })
     }
 
     async function getFriendship() {
@@ -127,7 +142,7 @@
     }
 
     async function main() {
-      await liff.init({ liffId: "2006821424-BxNGqX9L", withLoginOnExternalBrowser: true, scope: ["profile", "openid", "email"] })
+      await liff.init({ liffId: "2006821424-BxNGqX9L" })
 
       if (liff.isLoggedIn()) {
         getEnvironment()
