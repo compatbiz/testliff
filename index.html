@@ -48,7 +48,7 @@
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
     function createUniversalLink() {
-      
+
     }
 
     async function shareMsg() {
@@ -73,8 +73,16 @@
     }
 
     async function scanCode() {
-      const result = await liff.scanCode()
-      document.getElementById("scanCode").append(result.value)
+      try {
+        if (!liff.isInClient()) {
+          alert('This button is not available in external browser')
+          return
+        }
+        const result = await liff.scanCode()
+        document.getElementById("scanCode").append(result.value)
+      } catch (error) {
+        console.error('Error scanning:', error)
+      }
     }
 
     function openWindow() {
