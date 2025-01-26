@@ -80,6 +80,8 @@
       document.getElementById("userId").append(profile.userId)
       document.getElementById("statusMessage").append(profile.statusMessage)
       document.getElementById("displayName").append(profile.displayName)
+      document.getElementById("accessToken").append(liff.getAccessToken())
+      document.getElementById("decodedIDToken").append(liff.getDecodedIDToken().email)
     }
 
     function getEnvironment() {
@@ -99,9 +101,7 @@
     }
 
     async function main() {
-      // alert("LINE Developers x Skooldio")
       await liff.init({ liffId: "2006821424-BxNGqX9L" })
-
 
       if (liff.isLoggedIn()) {
         getEnvironment()
